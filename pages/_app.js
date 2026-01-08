@@ -1,4 +1,5 @@
-import { ThemeProvider } from 'theme-ui'
+import { ThemeUIProvider } from 'theme-ui'
+import { ColorModeProvider } from '@theme-ui/color-modes'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import '@carbonplan/components/fonts.css'
 import '@carbonplan/components/globals.css'
@@ -9,15 +10,17 @@ import { LayersProvider } from '../components/layers'
 
 const App = ({ Component, pageProps }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <LayersProvider>
-        <ParameterProvider>
-          <RegionProvider>
-            <Component {...pageProps} />
-          </RegionProvider>
-        </ParameterProvider>
-      </LayersProvider>
-    </ThemeProvider>
+    <ThemeUIProvider theme={theme}>
+      <ColorModeProvider>
+        <LayersProvider>
+          <ParameterProvider>
+            <RegionProvider>
+              <Component {...pageProps} />
+            </RegionProvider>
+          </ParameterProvider>
+        </LayersProvider>
+      </ColorModeProvider>
+    </ThemeUIProvider>
   )
 }
 

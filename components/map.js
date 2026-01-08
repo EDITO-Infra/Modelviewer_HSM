@@ -13,21 +13,21 @@ import { NAN, LABEL_MAP, COLORMAPS_MAP } from '../constants'
 import { frag, LAYER_UNITS } from '../model'
 
 const VARIABLES = [
-  'SALINITY_SSP119_2050', 
-  'SALINITY_SSP119_2090',  
-  'SALINITY_SSP245_2050', 
-  'SALINITY_SSP245_2090',  
-  'SALINITY_SSP585_2050', 
-  'SALINITY_SSP585_2090', 
-  'SALINITY_baseline_2010', 
-  'SST_SSP119_2050', 
-  'SST_SSP119_2090', 
-  'SST_SSP245_2050', 
-  'SST_SSP245_2090',  
-  'SST_SSP585_2050', 
-  'SST_SSP585_2090', 
-  'SST_baseline_2010', 
-  'area', 
+  'SALINITY_SSP119_2050',
+  'SALINITY_SSP119_2090',
+  'SALINITY_SSP245_2050',
+  'SALINITY_SSP245_2090',
+  'SALINITY_SSP585_2050',
+  'SALINITY_SSP585_2090',
+  'SALINITY_baseline_2010',
+  'SST_SSP119_2050',
+  'SST_SSP119_2090',
+  'SST_SSP245_2050',
+  'SST_SSP245_2090',
+  'SST_SSP585_2050',
+  'SST_SSP585_2090',
+  'SST_baseline_2010',
+  'area',
   'elevation']
 
 const Viewer = ({ expanded, children }) => {
@@ -81,14 +81,14 @@ const Viewer = ({ expanded, children }) => {
         style={{ overflow: 'inherit' }}
       >
         <Fill
-          color={theme.rawColors.background}
+          color={theme.rawColors?.background || theme.colors?.background || '#ffffff'}
           source={
             'https://storage.googleapis.com/carbonplan-maps/basemaps/land'
           }
           variable={'land'}
         />
         <Line
-          color={theme.rawColors.primary}
+          color={theme.rawColors?.primary || theme.colors?.primary || '#000000'}
           source={
             'https://storage.googleapis.com/carbonplan-maps/basemaps/land'
           }
@@ -96,9 +96,9 @@ const Viewer = ({ expanded, children }) => {
         />
         {showRegionPicker && (
           <RegionPicker
-            color={theme.colors.primary}
-            backgroundColor={theme.colors.background}
-            fontFamily={theme.fonts.mono}
+            color={theme.colors?.primary || '#000000'}
+            backgroundColor={theme.colors?.background || '#ffffff'}
+            fontFamily={theme.fonts?.mono || theme.fonts?.body || 'monospace'}
             fontSize={'14px'}
             minRadius={50}
           />

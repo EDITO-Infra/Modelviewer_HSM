@@ -1,6 +1,6 @@
-import { Box, Container, Divider } from 'theme-ui'
+import { Box, Container, Divider, IconButton } from 'theme-ui'
 import { useState, useEffect } from 'react'
-import { Column, Row, getScrollbarWidth } from '@carbonplan/components'
+import { Column, Row, getScrollbarWidth, Button } from '@carbonplan/components'
 import { Sidebar, SidebarFooter } from '@carbonplan/layouts'
 
 import Statistics from '../components/statistics'
@@ -66,42 +66,72 @@ const ControlPanel = ({ expanded, setExpanded, children, embedded }) => {
 
   if (embedded) {
     return (
-      <Box
-        sx={{
-          opacity: expanded ? 1 : 0,
-          pointerEvents: expanded ? 'all' : 'none',
-          position: 'fixed',
-          top: '0px',
-          right: '0px',
-          bottom: '0px',
-          minWidth: '0px',
-          maxHeight: '100vh',
-          width: '100vw',
-          overflowX: 'hidden',
-          overflowY: 'scroll',
-          backgroundColor: 'background',
-          zIndex: 4000,
-          pt: ['56px'],
-          transition: 'opacity 0.25s',
-        }}
-      >
-        <Container>
-          <Row>
-            <Column start={[1]} width={[12]}>
-              <Divider />
+      <>
+        {/* Show controls button in bottom left */}
+        <Box
+          sx={{
+            position: 'fixed',
+            bottom: [17, 17, 15, 15],
+            left: [13],
+            zIndex: 5000,
+          }}
+        >
+          <Button
+            onClick={() => setExpanded(!expanded)}
+            sx={{
+              cursor: 'pointer',
+              backgroundColor: 'background',
+              border: '1px solid',
+              borderColor: 'muted',
+              borderRadius: '4px',
+              px: 3,
+              py: 2,
+              fontSize: [1, 1, 2],
+              fontFamily: 'body',
+              '&:hover': {
+                backgroundColor: 'muted',
+              },
+            }}
+          >
+            {expanded ? 'Hide controls' : 'Show controls'}
+          </Button>
+        </Box>
 
-              <Box
-                sx={{
-                  display: expanded ? 'inherit' : 'none',
-                  mt: [4],
-                }}
-              >
-                {expanded && children}
-              </Box>
-            </Column>
-          </Row>
-        </Container>
-      </Box>
+        {/* Control panel sidebar */}
+        <Box
+          sx={{
+            opacity: expanded ? 1 : 0,
+            pointerEvents: expanded ? 'all' : 'none',
+            position: 'fixed',
+            top: '0px',
+            left: '0px',
+            bottom: '0px',
+            width: ['100%', '100%', '400px', '450px'],
+            maxWidth: '450px',
+            maxHeight: '100vh',
+            overflowX: 'hidden',
+            overflowY: 'auto',
+            backgroundColor: 'background',
+            zIndex: 4000,
+            pt: ['56px'],
+            px: [3, 4],
+            pb: [4],
+            borderRight: '1px solid',
+            borderColor: 'muted',
+            boxShadow: expanded ? '4px 0 12px rgba(0,0,0,0.1)' : 'none',
+            transition: 'opacity 0.25s, box-shadow 0.25s',
+          }}
+        >
+          <Box
+            sx={{
+              display: expanded ? 'inherit' : 'none',
+              mt: [4],
+            }}
+          >
+            {expanded && children}
+          </Box>
+        </Box>
+      </>
     )
   } else if (index < 2) {
     return (

@@ -8,8 +8,16 @@ pushd "$SCRIPT_DIR" >/dev/null
 if ! command -v uv >/dev/null; then
   echo "Installing uv..."
   curl -LsSf https://astral.sh/uv/install.sh | sh
-  export PATH="$HOME/.cargo/bin:$PATH"
+  # Add uv to PATH (it installs to $HOME/.local/bin)
+  export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+  # Also source the env file if it exists
+  if [ -f "$HOME/.local/bin/env" ]; then
+    source "$HOME/.local/bin/env"
+  fi
 fi
+
+# Ensure uv is in PATH (in case it was installed but PATH wasn't updated)
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
 # Install Python dependencies with uv
 if [ -f "pyproject.toml" ]; then

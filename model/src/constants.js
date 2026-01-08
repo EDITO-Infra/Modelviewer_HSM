@@ -100,7 +100,7 @@ export const PARAMETERS = {
   optMax_b: {
     id: 'optMax_b',
     min: 0,
-    max:6000,
+    max: 6000,
     step: 10,
     label: '',
     units: 'Optimal maximal depth',
@@ -118,7 +118,7 @@ export const PARAMETERS = {
     max: 6000,
     step: 10,
     label: '',
-    tooltip:'',
+    tooltip: '',
     units: 'Critical maximal depth',
     presets: {
       herring: 250,
@@ -133,7 +133,7 @@ export const PARAMETERS = {
     step: 0.1,
     label: '',
     units: 'Importance of bathymetry',
-    tooltip:'',
+    tooltip: '',
     presets: {
       herring: 1,
       mackerel: 1,
@@ -330,7 +330,7 @@ export const LAYER_PARAMETERS = {
     SSP585: [],
 
   },
-  elevation:{
+  elevation: {
     env_par: [],
     SSP119: [],
     SSP126: [],
@@ -340,3 +340,5 @@ export const LAYER_PARAMETERS = {
 
   },
 }
+// Used for the discrete legend (e.g. `species_preferred`) and presets keyed by species name.
+export const SPECIES = ['herring', 'mackerel', 'seabass']

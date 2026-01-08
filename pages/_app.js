@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'theme-ui'
-import '@carbonplan/maps/mapbox.css'
+import 'mapbox-gl/dist/mapbox-gl.css'
 import '@carbonplan/components/fonts.css'
 import '@carbonplan/components/globals.css'
 import theme from '@carbonplan/theme'

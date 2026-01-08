@@ -1,6 +1,5 @@
 import { Box, Container, Divider } from 'theme-ui'
-import { useBreakpointIndex } from '@theme-ui/match-media'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Column, Row, getScrollbarWidth } from '@carbonplan/components'
 import { Sidebar, SidebarFooter } from '@carbonplan/layouts'
 
@@ -31,6 +30,33 @@ const useScrollbarClasses = () => {
   )
 
   return customScrollbar ? 'custom-scrollbar' : null
+}
+
+// Client-side only breakpoint hook
+const useBreakpointIndex = ({ defaultIndex = 2 }) => {
+  const [index, setIndex] = useState(defaultIndex)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const updateIndex = () => {
+      const width = window.innerWidth
+      // Breakpoints: mobile (< 640px = 0), tablet (< 1024px = 1), desktop (>= 1024px = 2+)
+      if (width < 640) {
+        setIndex(0)
+      } else if (width < 1024) {
+        setIndex(1)
+      } else {
+        setIndex(2)
+      }
+    }
+
+    updateIndex()
+    window.addEventListener('resize', updateIndex)
+    return () => window.removeEventListener('resize', updateIndex)
+  }, [])
+
+  return index
 }
 
 const ControlPanel = ({ expanded, setExpanded, children, embedded }) => {

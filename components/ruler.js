@@ -22,8 +22,8 @@ const Ruler = () => {
   useRuler({
     showAxes,
     showGrid,
-    fontFamily: theme.fonts.faux,
-    gridColor: theme.colors.secondary,
+    fontFamily: theme.fonts?.faux || theme.fonts?.body || 'system-ui, sans-serif',
+    gridColor: theme.colors?.secondary || theme.colors?.muted || '#666666',
   })
 
   return (

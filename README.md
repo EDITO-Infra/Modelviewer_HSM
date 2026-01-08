@@ -32,6 +32,10 @@ The environmental variable dataset used by the smartviewer, need to be provided 
 
 This work is available on this [GitHub - Edito_resampling_datasts](https://github.com/willem0boone/Edito_resampling_datasets)
 
+## Security
+
+For information about known security vulnerabilities and how to report security issues, see [SECURITY.md](SECURITY.md).
+
 ## Building the site
 
 Assuming you already have `Node.js` installed, you can install the build dependencies as:

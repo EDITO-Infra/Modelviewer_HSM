@@ -1,8 +1,9 @@
 // pages/index.js
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 
-export default function RedirectHome() {
+const RedirectHome = () => {
   const router = useRouter()
 
   useEffect(() => {
@@ -11,3 +12,5 @@ export default function RedirectHome() {
 
   return null
 }
+
+export default dynamic(() => Promise.resolve(RedirectHome), { ssr: false })

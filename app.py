@@ -16,7 +16,7 @@ async def update():
 # Serve static files from out directory
 # Note: The deployment platform will serve these directly, not FastAPI
 # This is only for local testing
-static_dir = Path("out")
+static_dir = Path(__file__).resolve().parent / "out"
 
 if static_dir.exists():
     # Serve _next directory separately to ensure proper asset loading

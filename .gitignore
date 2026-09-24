@@ -7,4 +7,4 @@ model/dst/
 model/node_modules/
 *.zarr
 .zarr
-**/_next/**
+out/
